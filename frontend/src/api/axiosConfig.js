@@ -1,8 +1,17 @@
 import axios from 'axios';
 import { cacheData, getCachedData, queueRequest } from '../utils/offlineSync';
 
+let finalUrl = window.VITE_API_URL || import.meta.env.VITE_API_URL || 'http://localhost:8081/api';
+
+if (finalUrl === "RUNTIME_" + "VITE_API_URL") {
+  alert("WARNING: Backend URL was not injected into index.html by the Docker Server! It is pointing to a broken relative path. Nginx deployment has failed.");
+  finalUrl = 'http://localhost:8081/api';
+} else if (finalUrl.includes('localhost')) {
+  alert("WARNING: The frontend is trying to connect to localhost. This means VITE_API_URL was empty! If you cleared your browser cache and this happens, Render is completely missing the VITE_API_URL environment variable.");
+}
+
 const api = axios.create({
-  baseURL: window.VITE_API_URL || import.meta.env.VITE_API_URL || 'http://localhost:8081/api',
+  baseURL: finalUrl,
   withCredentials: true,
 });
 
