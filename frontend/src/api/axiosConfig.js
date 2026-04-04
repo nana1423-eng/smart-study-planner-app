@@ -2,7 +2,7 @@ import axios from 'axios';
 import { cacheData, getCachedData, queueRequest } from '../utils/offlineSync';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8081/api',
+  baseURL: window.VITE_API_URL || import.meta.env.VITE_API_URL || 'http://localhost:8081/api',
   withCredentials: true,
 });
 
