@@ -77,21 +77,15 @@ public class AuthController {
         user.setEmail(signUpRequest.getEmail());
         user.setPasswordHash(encoder.encode(signUpRequest.getPassword()));
         user.setRole(Role.USER);
-        user.setEmailVerified(false);
+        user.setEmailVerified(true);
         userRepository.save(user);
 
-        // OTP Generation logic
-        String otp = String.format("%06d", new Random().nextInt(999999));
-        VerificationToken token = new VerificationToken();
-        token.setToken(otp);
-        token.setUser(user);
-        token.setExpiryDate(LocalDateTime.now().plusMinutes(15));
-        tokenRepository.save(token);
-
+        // OTP Generation logic (Disabled since user is auto-verified)
+        // String otp = String.format("%06d", new Random().nextInt(999999));
         // Native Dispatch
-        emailService.sendOtpEmail(user.getEmail(), otp);
+        // emailService.sendOtpEmail(user.getEmail(), otp);
 
-        return ResponseEntity.ok("User registered successfully. Verification required!");
+        return ResponseEntity.ok("User registered successfully.");
     }
 
     @GetMapping("/health")

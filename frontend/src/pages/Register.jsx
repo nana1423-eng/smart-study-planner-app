@@ -63,7 +63,8 @@ export default function Register() {
     }
     try {
       await api.post('/auth/signup', { fullName, username, email, password });
-      navigate('/verify-email', { state: { email } });
+      alert("Registration successful! You may now log in.");
+      navigate('/login');
     } catch (err) {
       setError(err.response?.data || 'An error occurred. Please try a different username.');
     }
