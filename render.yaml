@@ -8,10 +8,18 @@ services:
     plan: free
     healthCheckPath: /api/auth/health
     envVars:
-      - key: SPRING_DATASOURCE_URL
+      - key: DB_HOST
         fromDatabase:
           name: smart-study-db
-          property: connectionString
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: smart-study-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: smart-study-db
+          property: database
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
           name: smart-study-db
