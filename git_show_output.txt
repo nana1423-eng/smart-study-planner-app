@@ -1,0 +1,32 @@
+commit 6375d6fc98b98dd6702d0ac91c29682b0e3533ae
+Author: nanayeboah-blip <yeboahn188@gmail.com>
+Date:   Mon Mar 30 18:47:53 2026 +0000
+
+    Update Dashboard.jsx
+
+diff --git a/frontend/src/pages/Dashboard.jsx b/frontend/src/pages/Dashboard.jsx
+index a574a23..4ab0d4e 100644
+--- a/frontend/src/pages/Dashboard.jsx
++++ b/frontend/src/pages/Dashboard.jsx
+@@ -1,8 +1,10 @@
+ import React, { useEffect, useState } from 'react';
+ import api from '../api/axiosConfig';
+ import { Link } from 'react-router-dom';
++import { useAuth } from '../context/AuthContext';
+ 
+ export default function Dashboard() {
++  const { user } = useAuth();
+   const [assignments, setAssignments] = useState([]);
+   const [todaySessions, setTodaySessions] = useState([]);
+   const [isLoading, setIsLoading] = useState(true);
+@@ -70,8 +72,8 @@ export default function Dashboard() {
+         {/* Dynamic Hero Section */}
+         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+           <div>
+-            <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight hover:scale-[1.01] transition-transform">
+-              Welcome Back
++            <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight hover:scale-[1.01] transition-transform capitalize">
++              Welcome Back{user?.username ? `, ${user.username}` : ''}
+             </h1>
+             <div className="flex items-center gap-3 mt-3">
+                <div className={`w-2 h-2 rounded-full ${highPriorityCount > 0 ? 'bg-rose-500 animate-pulse' : 'bg-emerald-500'}`}></div>

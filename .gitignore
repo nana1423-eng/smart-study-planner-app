@@ -1,0 +1,33 @@
+# Node
+node_modules/
+
+# IDEs
+.idea/
+.vscode/
+
+# Environment Variables
+.env
+.env.local
+
+# Build outputs
+dist/
+target/
+build/
+
+# Logs
+*.log
+error.log
+
+# Large binary files / local installers
+*.exe
+*.msi
+*.dmg
+*.pkg
+
+# Vite cache
+*.timestamp-*.mjs
+dev-dist/
+
+# OS
+.DS_Store
+Thumbs.db

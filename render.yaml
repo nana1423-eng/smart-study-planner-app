@@ -1,0 +1,53 @@
+services:
+  # ─── Backend (Spring Boot) ───────────────────────────────────────────────
+  - type: web
+    name: smart-study-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /api/auth/health
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: smart-study-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: smart-study-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: smart-study-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: AI_API_KEY
+        sync: false
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: PORT
+        value: 8081
+
+  # ─── Frontend (React + Nginx) ────────────────────────────────────────────
+  - type: web
+    name: smart-study-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    plan: free
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: smart-study-backend
+          type: web
+          property: host
+          transform: "https://{host}/api"
+
+# ─── PostgreSQL Database ─────────────────────────────────────────────────
+databases:
+  - name: smart-study-db
+    databaseName: smart_study_planner
+    plan: free
