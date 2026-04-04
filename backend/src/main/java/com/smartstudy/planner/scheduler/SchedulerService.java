@@ -62,11 +62,12 @@ public class SchedulerService {
                 int dateCompare = a.getDeadline().toLocalDate().compareTo(b.getDeadline().toLocalDate());
                 if (dateCompare != 0) return dateCompare;
             } else if (a.getDeadline() != null) {
-                return -1;
+                return -1; // Specific deadline before no-deadline
             } else if (b.getDeadline() != null) {
-                return 1;
+                return 1; // No-deadline after specific deadline
             }
 
+            // Fallback to Weight if deadlines are both null or equal
             int weightA = getPriorityWeight(a.getPriority()) + (a.getDifficulty() != null ? a.getDifficulty() : 1);
             int weightB = getPriorityWeight(b.getPriority()) + (b.getDifficulty() != null ? b.getDifficulty() : 1);
             return Integer.compare(weightB, weightA); // Descending weight
@@ -86,7 +87,8 @@ public class SchedulerService {
             int difficulty = assignment.getDifficulty() != null ? Math.max(1, assignment.getDifficulty()) : 2;
             int remainingMinutesNeeded = difficulty * 45; 
 
-            while (remainingMinutesNeeded > 0) {
+            int dailySafetyCounter = 0; // Prevent infinite loops or scheduling too far out
+            while (remainingMinutesNeeded > 0 && dailySafetyCounter < 365) {
                 int blockDuration = Math.min(Math.min(remainingMinutesNeeded, 90), dailyCapacityMinutes - currentDayLoad);
 
                 if (blockDuration <= 0) {
@@ -94,6 +96,7 @@ public class SchedulerService {
                     currentDate = currentDate.plusDays(1);
                     currentDayLoad = 0;
                     currentStartTime = java.time.LocalTime.of(9, 0);
+                    dailySafetyCounter++;
                     continue; // Re-evaluate loop with new day
                 }
 

@@ -46,12 +46,12 @@ export default function Schedule() {
   };
 
   // Group by Date for timeline render
-  const groupedSchedule = schedule.reduce((acc, session) => {
-    const dateStr = session.scheduledDate;
+  const groupedSchedule = Array.isArray(schedule) ? schedule.reduce((acc, session) => {
+    const dateStr = session.scheduledDate || 'No Date';
     if (!acc[dateStr]) acc[dateStr] = [];
     acc[dateStr].push(session);
     return acc;
-  }, {});
+  }, {}) : {};
 
   const dates = Object.keys(groupedSchedule).sort();
 
@@ -155,8 +155,8 @@ export default function Schedule() {
                         </div>
                       </div>
                       
-                      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1 line-clamp-1" title={session.assignment.title}>
-                        {session.assignment.title}
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1 line-clamp-1" title={session.assignment?.title || 'No Title'}>
+                        {session.assignment?.title || 'Unknown Assignment'}
                       </h3>
                       
                       {session.subject && (
@@ -167,7 +167,7 @@ export default function Schedule() {
                       )}
                       
                       <div className="mt-4 pt-4 border-t border-slate-300 dark:border-slate-700/50 flex justify-between items-center">
-                        <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Priority: {session.assignment.priority || 'Normal'}</span>
+                        <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Priority: {session.assignment?.priority || 'Normal'}</span>
                         <Link to="/focus" className={`text-sm font-bold transition-colors ${session.status === 'PENDING' ? 'text-indigo-400 hover:text-indigo-300' : 'text-slate-500 pointer-events-none'}`}>
                           {session.status === 'PENDING' ? 'Start Focus ➔' : 'Closed'}
                         </Link>
