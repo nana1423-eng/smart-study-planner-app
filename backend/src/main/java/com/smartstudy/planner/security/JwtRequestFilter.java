@@ -41,8 +41,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwt = authorizationHeader.substring(7);
             try {
                 username = jwtUtil.extractUsername(jwt);
+                logger.info("Successfully extracted username from JWT: {}", username);
             } catch (Exception e) {
-                logger.error("Could not extract username from JWT: {}", e.getMessage());
+                logger.error("JWT Authentication failed: {}", e.getMessage());
+            }
+        } else {
+            if (authorizationHeader != null) {
+                logger.warn("Authorization header present but does not start with Bearer");
             }
         }
 
@@ -54,6 +59,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                         userDetails, null, userDetails.getAuthorities());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+                logger.info("User authenticated: {}", username);
+            } else {
+                logger.warn("Token validation failed for user: {}", username);
             }
         }
         chain.doFilter(request, response);

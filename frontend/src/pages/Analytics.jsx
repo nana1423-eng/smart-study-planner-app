@@ -62,23 +62,23 @@ export default function Analytics() {
   const hasData = summary && summary.totalSessions > 0;
 
   return (
-    <div className="p-8 text-slate-800 dark:text-slate-100 max-w-7xl mx-auto space-y-10 min-h-screen">
+    <div className="p-4 sm:p-8 text-slate-800 dark:text-slate-100 max-w-7xl mx-auto space-y-8 sm:space-y-10 min-h-screen">
       
       {/* Header Section */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-4 text-center sm:text-left">
         <div>
-          <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight">Analytics Dashboard</h1>
-          <p className="text-lg text-slate-500 dark:text-slate-400 mt-2 font-medium">Deep dive into your study metrics and performance.</p>
+          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">Analytics</h1>
+          <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 mt-2 font-medium">Deep dive into your performance metrics.</p>
         </div>
       </div>
 
       {!hasData ? (
-        <div className="bg-white dark:bg-slate-800/40 border border-slate-300 dark:border-slate-700/50 p-12 rounded-[2.5rem] shadow-sm text-center">
-          <div className="w-24 h-24 bg-indigo-500/10 text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-6">
+        <div className="bg-white dark:bg-slate-800/40 border border-slate-300 dark:border-slate-700/50 p-6 sm:p-12 rounded-[2rem] sm:rounded-[2.5rem] shadow-sm text-center">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 bg-indigo-500/10 text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-6">
             <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
           </div>
-          <h2 className="text-2xl font-black mb-3 text-slate-900 dark:text-white">No Data Yet</h2>
-          <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-md mx-auto">Complete your first study session or mark an assignment as complete to start seeing your performance metrics here.</p>
+          <h2 className="text-xl sm:text-2xl font-black mb-3 text-slate-900 dark:text-white">No Data Yet</h2>
+          <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-md mx-auto text-sm sm:text-base">Complete your first study session or mark an assignment as complete to start seeing performance metrics.</p>
           <Link to="/focus" className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-8 rounded-full transition-transform hover:scale-105 shadow-[0_0_20px_rgba(79,70,229,0.4)]">
             Start a Focus Session
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>

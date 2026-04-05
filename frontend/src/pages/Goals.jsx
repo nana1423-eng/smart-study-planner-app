@@ -71,31 +71,31 @@ export default function Goals() {
   }
 
   return (
-    <div className="p-8 text-slate-800 dark:text-slate-100 max-w-7xl mx-auto h-full space-y-10">
+    <div className="p-4 sm:p-8 text-slate-800 dark:text-slate-100 max-w-7xl mx-auto h-full space-y-8 sm:space-y-10">
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight">Active Goals</h1>
-          <p className="text-lg text-slate-500 dark:text-slate-400 mt-2 font-medium">Set your study targets and crush them.</p>
+          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">Active Goals</h1>
+          <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 mt-2 font-medium">Set targets and crush them.</p>
         </div>
         <button 
           onClick={() => setIsModalOpen(true)}
-          className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-full flex items-center gap-2 transition-all shadow-[0_0_15px_rgba(79,70,229,0.3)] hover:scale-105"
+          className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(79,70,229,0.3)] hover:scale-105"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path></svg>
-          Set New Goal
+          New Goal
         </button>
       </div>
 
       {/* Goal Cards Grid */}
       {goals.length === 0 ? (
-        <div className="bg-white dark:bg-slate-800/40 border border-slate-300 dark:border-slate-700/50 p-12 rounded-[2.5rem] shadow-sm text-center">
-          <div className="w-20 h-20 bg-indigo-500/10 text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-6">
+        <div className="bg-white dark:bg-slate-800/40 border border-slate-300 dark:border-slate-700/50 p-6 sm:p-12 rounded-[2rem] sm:rounded-[2.5rem] shadow-sm text-center">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-indigo-500/10 text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-6">
             <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
           </div>
-          <h2 className="text-2xl font-black mb-3 text-slate-900 dark:text-white">No Goals Yet</h2>
-          <p className="text-slate-500 dark:text-slate-400 mb-6 max-w-md mx-auto">Set a daily, weekly, or subject-specific target to start tracking your progress visually.</p>
+          <h2 className="text-xl sm:text-2xl font-black mb-3 text-slate-900 dark:text-white">No Goals Yet</h2>
+          <p className="text-slate-500 dark:text-slate-400 mb-6 max-w-md mx-auto text-sm sm:text-base">Set a daily, weekly, or subject-specific target to start tracking your progress visually.</p>
           <button onClick={() => setIsModalOpen(true)} className="text-indigo-400 font-bold hover:text-slate-900 dark:text-white transition-colors">Create your first goal &rarr;</button>
         </div>
       ) : (
@@ -149,7 +149,7 @@ export default function Goals() {
       {/* Goal Creation Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-          <div className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/50 rounded-3xl p-8 max-w-md w-full shadow-2xl relative">
+          <div className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/50 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative">
             <button onClick={() => setIsModalOpen(false)} className="absolute top-6 right-6 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>

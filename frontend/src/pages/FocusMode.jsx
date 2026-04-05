@@ -158,9 +158,9 @@ export default function FocusMode() {
     : ((5 * 60 - timeLeft) / (5 * 60)) * 100;
 
   return (
-    <div className="p-8 text-slate-800 dark:text-slate-100 flex flex-col md:flex-row gap-8 max-w-7xl mx-auto h-full">
+    <div className="p-4 sm:p-8 text-slate-800 dark:text-slate-100 flex flex-col md:flex-row gap-6 sm:gap-8 max-w-7xl mx-auto h-full min-h-screen">
       {/* Main Timer Section */}
-      <div className="flex-1 flex flex-col items-center justify-center bg-white dark:bg-slate-800/40 rounded-[3rem] border border-slate-300 dark:border-slate-700/50 p-12 shadow-2xl relative overflow-hidden">
+      <div className="flex-1 flex flex-col items-center justify-center bg-white dark:bg-slate-800/40 rounded-[2rem] sm:rounded-[3rem] border border-slate-300 dark:border-slate-700/50 p-6 sm:p-12 shadow-2xl relative overflow-hidden">
         {/* Ambient background glow */}
         <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 blur-[120px] rounded-full pointer-events-none transition-colors duration-1000 ${mode === 'STUDY' ? 'bg-indigo-600/20' : 'bg-emerald-600/20'}`}></div>
         
@@ -179,27 +179,27 @@ export default function FocusMode() {
           </button>
         </div>
 
-        <div className="relative flex justify-center items-center w-80 h-80 mb-12">
+        <div className="relative flex justify-center items-center w-64 h-64 sm:w-80 sm:h-80 mb-12 scale-90 sm:scale-100">
           {/* Circular Progress */}
           <svg className="w-full h-full transform -rotate-90 absolute inset-0 drop-shadow-2xl">
-            <circle cx="160" cy="160" r="145" fill="none" className="stroke-slate-800" strokeWidth="12"></circle>
+            <circle cx="50%" cy="50%" r="45%" fill="none" className="stroke-slate-200 dark:stroke-slate-800" strokeWidth="12"></circle>
             <circle 
-              cx="160" 
-              cy="160" 
-              r="145" 
+              cx="50%" 
+              cy="50%" 
+              r="45%" 
               fill="none" 
               className={`${ringColor} transition-all duration-1000 ease-linear`}
               strokeWidth="12" 
               strokeLinecap="round"
-              strokeDasharray="911.06" // 2 * PI * 145 = 911.06
-              strokeDashoffset={911.06 - (progressPercentage / 100) * 911.06}
+              strokeDasharray="283%" 
+              style={{ strokeDashoffset: `${283 - (progressPercentage / 100) * 283}%` }}
             ></circle>
           </svg>
           <div className="relative z-10 flex flex-col items-center">
-            <h1 className="text-7xl font-black text-slate-900 dark:text-white tracking-widest tabular-nums drop-shadow-md">
+            <h1 className="text-5xl sm:text-7xl font-black text-slate-900 dark:text-white tracking-widest tabular-nums drop-shadow-md">
               {formatTime(timeLeft)}
             </h1>
-            <p className="text-slate-500 dark:text-slate-400 font-bold mt-2 tracking-widest uppercase text-sm">
+            <p className="text-slate-500 dark:text-slate-400 font-bold mt-1 sm:mt-2 tracking-widest uppercase text-[10px] sm:text-sm">
               {mode === 'STUDY' ? 'Focus Session' : 'Relax'}
             </p>
           </div>

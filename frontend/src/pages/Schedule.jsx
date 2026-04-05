@@ -67,18 +67,18 @@ export default function Schedule() {
   }
 
   return (
-    <div className="p-8 text-slate-800 dark:text-slate-100 max-w-5xl mx-auto space-y-10 min-h-screen">
+    <div className="p-4 sm:p-8 text-slate-800 dark:text-slate-100 max-w-5xl mx-auto space-y-8 sm:space-y-10 min-h-screen">
       
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
         <div>
-          <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight">Your Schedule</h1>
-          <p className="text-lg text-slate-500 dark:text-slate-400 mt-2 font-medium">Auto-generated timeline mapped perfectly to your deadlines.</p>
+          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">Your Schedule</h1>
+          <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 mt-2 font-medium">Auto-generated timeline mapped perfectly to your deadlines.</p>
         </div>
         <button 
           onClick={generateSchedule}
           disabled={generating}
-          className="bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-700 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-full flex items-center min-w-[200px] justify-center gap-2 transition-all shadow-[0_0_15px_rgba(79,70,229,0.3)] hover:scale-105"
+          className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-700 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-full flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(79,70,229,0.3)] hover:scale-105"
         >
           {generating ? (
             <div className="w-5 h-5 rounded-full border-2 border-slate-300 border-t-white animate-spin"></div>
@@ -116,30 +116,30 @@ export default function Schedule() {
               <div key={date} className="relative">
                 {/* Timeline vertical line connector */}
                 {index !== dates.length - 1 && (
-                  <div className="absolute left-[2.25rem] top-16 bottom-[-3rem] w-0.5 bg-white dark:bg-slate-800/80 -z-10"></div>
+                  <div className="absolute left-[1.5rem] sm:left-[2.25rem] top-12 sm:top-16 bottom-[-2rem] sm:bottom-[-3rem] w-0.5 bg-slate-200 dark:bg-slate-800/80 -z-10"></div>
                 )}
                 
                 {/* Date Header Segment */}
-                <div className="flex items-center gap-6 mb-6">
-                  <div className={`w-[4.5rem] h-[4.5rem] rounded-2xl flex flex-col items-center justify-center flex-shrink-0 shadow-lg ${isToday ? 'bg-indigo-600 text-slate-900 dark:text-white' : isPast ? 'bg-rose-500/20 text-rose-400' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300'}`}>
-                    <span className="text-xs font-bold uppercase tracking-widest">{dayName.slice(0, 3)}</span>
-                    <span className="text-xl font-black">{dateObj.getDate()}</span>
+                <div className="flex items-center gap-4 sm:gap-6 mb-6">
+                  <div className={`w-12 h-12 sm:w-[4.5rem] sm:h-[4.5rem] rounded-xl sm:rounded-2xl flex flex-col items-center justify-center flex-shrink-0 shadow-lg ${isToday ? 'bg-indigo-600 text-white' : isPast ? 'bg-rose-500/20 text-rose-400' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300'}`}>
+                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest leading-none mb-0.5">{dayName.slice(0, 3)}</span>
+                    <span className="text-base sm:text-xl font-black leading-none">{dateObj.getDate()}</span>
                   </div>
                   
                   <div>
-                    <h2 className="text-2xl font-bold flex items-center gap-3">
+                    <h2 className="text-lg sm:text-2xl font-bold flex flex-wrap items-center gap-2 sm:gap-3 leading-tight">
                       {isToday ? 'Today' : monthDay}
-                      {isToday && <span className="bg-indigo-500/20 text-indigo-400 text-xs px-2 py-0.5 rounded-full uppercase tracking-wider font-bold">Current</span>}
-                      {isPast && <span className="bg-rose-500/20 text-rose-400 text-xs px-2 py-0.5 rounded-full uppercase tracking-wider font-bold">Overdue Risks</span>}
+                      {isToday && <span className="bg-indigo-500/20 text-indigo-400 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold">Current</span>}
+                      {isPast && <span className="bg-rose-500/20 text-rose-400 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold">Overdue Risks</span>}
                     </h2>
-                    <p className="text-slate-500 font-medium text-sm mt-1">
-                      {groupedSchedule[date].length} study blocks &bull; {formatTime(totalMins)} total load
+                    <p className="text-slate-500 font-medium text-xs sm:text-sm mt-0.5">
+                      {groupedSchedule[date].length} study blocks &bull; {formatTime(totalMins)}
                     </p>
                   </div>
                 </div>
 
                 {/* Session Blocks Grid */}
-                <div className="pl-[6rem] grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="pl-6 sm:pl-[6rem] grid grid-cols-1 md:grid-cols-2 gap-4">
                   {groupedSchedule[date].map(session => (
                     <div 
                       key={session.id} 

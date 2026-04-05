@@ -66,13 +66,13 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="p-8 text-slate-800 dark:text-slate-100 h-full">
-      <div className="max-w-7xl mx-auto space-y-10">
+    <div className="p-4 sm:p-8 text-slate-800 dark:text-slate-100 h-full">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-10">
         
         {/* Dynamic Hero Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight hover:scale-[1.01] transition-transform capitalize">
+            <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight hover:scale-[1.01] transition-transform capitalize">
               Welcome Back{user?.username ? `, ${user.username}` : ''}
             </h1>
             <div className="flex items-center gap-3 mt-3">
@@ -81,11 +81,11 @@ export default function Dashboard() {
             </div>
           </div>
           
-          <div className="flex gap-4">
-             <Link to="/planner" className="px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 rounded-xl font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm">
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+             <Link to="/planner" className="w-full sm:w-auto px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 rounded-xl font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm text-center">
                 Open Planner
              </Link>
-             <Link to="/assignments" className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/30 flex items-center gap-2">
+             <Link to="/assignments" className="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4"></path></svg>
                 New Task
              </Link>
@@ -95,12 +95,11 @@ export default function Dashboard() {
         {/* Lower Grid: Dynamic Execution Widgets */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-          {/* Today's Execution Engine (Primary Focus) */}
-          <div className="lg:col-span-8 bg-white dark:bg-slate-800/40 p-8 rounded-[2.5rem] border border-slate-300 dark:border-slate-700/50 shadow-sm flex flex-col transition duration-500 hover:shadow-md">
-            <div className="flex justify-between items-center mb-8 border-b border-slate-100 dark:border-slate-700/50 pb-4">
+          <div className="lg:col-span-8 bg-white dark:bg-slate-800/40 p-5 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-slate-300 dark:border-slate-700/50 shadow-sm flex flex-col transition duration-500 hover:shadow-md">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-slate-100 dark:border-slate-700/50 pb-4 gap-4">
               <div className="flex items-center gap-4">
                  <div className="p-3 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-2xl"><svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
-                 <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Today's Execution</h3>
+                 <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">Today's Execution</h3>
               </div>
               <span className="text-sm font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">{new Date().toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' })}</span>
             </div>
@@ -118,16 +117,16 @@ export default function Dashboard() {
                     {/* The colored subject stripe */}
                     <div className="absolute left-0 top-0 bottom-0 w-1.5 opacity-80" style={{backgroundColor: session.subjectColor || '#6366f1'}}></div>
                     
-                    <div className="flex items-center gap-6 pl-2">
-                       <div className="text-center shrink-0">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 pl-2 w-full">
+                       <div className="text-left sm:text-center shrink-0">
                           <p className="text-lg font-black text-slate-900 dark:text-white">{session.startTime || '--:--'}</p>
                           <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">{session.durationMinutes} MIN</p>
                        </div>
                        
-                       <div className="w-px h-10 bg-slate-200 dark:bg-slate-700 mx-1"></div>
+                       <div className="hidden sm:block w-px h-10 bg-slate-200 dark:bg-slate-700 mx-1"></div>
                        
-                       <div>
-                          <h4 className="text-slate-900 dark:text-white font-bold text-[17px] truncate pr-2 max-w-[200px] sm:max-w-xs">{session.assignmentTitle}</h4>
+                       <div className="flex-1">
+                          <h4 className="text-slate-900 dark:text-white font-bold text-[17px] pr-2 w-full">{session.assignmentTitle}</h4>
                           <span className="text-xs text-slate-500 dark:text-slate-400 font-bold flex items-center gap-1.5 mt-0.5">
                              <span className="w-2 h-2 rounded-full" style={{backgroundColor: session.subjectColor || '#6366f1'}}></span>
                              Scheduled Block
@@ -135,10 +134,10 @@ export default function Dashboard() {
                        </div>
                     </div>
                     
-                    <div>
+                    <div className="w-full sm:w-auto mt-4 sm:mt-0">
                        <Link 
                          to={`/focus?assignmentId=${session.assignmentId}`}
-                         className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-500 font-bold rounded-xl transition shadow-sm group-hover:shadow group-hover:-translate-y-0.5"
+                         className="flex items-center justify-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-500 font-bold rounded-xl transition shadow-sm group-hover:shadow group-hover:-translate-y-0.5 w-full sm:w-auto"
                        >
                           <svg className="w-4 h-4 text-indigo-500 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                           Start Focus

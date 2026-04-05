@@ -26,6 +26,8 @@ import api from './api/axiosConfig';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+
   React.useEffect(() => {
     const handleOnline = () => {
       console.log("Back online! Syncing...");
@@ -39,10 +41,10 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <Router>
-          <div className="flex bg-slate-50 dark:bg-[#0f172a] min-h-screen text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 selection:bg-indigo-900/30">
-            <Sidebar />
-            <div className="flex-1 flex flex-col min-h-screen relative z-10 overflow-x-hidden">
-              <Navbar />
+          <div className="flex bg-white dark:bg-[#0f172a] min-h-screen text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 selection:bg-indigo-900/30 overflow-x-hidden">
+            <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+            <div className="flex-1 flex flex-col min-h-screen relative z-10 w-full overflow-x-hidden">
+              <Navbar onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
               <Routes>
                 <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

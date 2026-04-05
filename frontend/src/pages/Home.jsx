@@ -35,19 +35,19 @@ export default function Home() {
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${scrolled ? 'bg-slate-950/90 backdrop-blur-2xl border-slate-200 dark:border-slate-800 shadow-sm' : 'bg-transparent border-transparent py-4'}`}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded bg-blue-600/10 border border-blue-500/20 flex items-center justify-center">
+            <div className="w-8 h-8 rounded bg-blue-600/10 border border-blue-500/20 flex items-center justify-center shrink-0">
               <svg className="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
             </div>
-            <span className="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">SmartStudy</span>
+            <span className="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100 truncate">SmartStudy</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500 dark:text-slate-400">
             <a href="#features" className="hover:text-slate-800 dark:text-slate-100 transition-colors">Features</a>
             <a href="#how-it-works" className="hover:text-slate-800 dark:text-slate-100 transition-colors">How it Works</a>
             <a href="#ai-highlight" className="hover:text-slate-800 dark:text-slate-100 transition-colors">AI Engine</a>
           </div>
-          <div className="flex items-center gap-3">
-            <Link to="/login" className="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 transition-colors px-4 py-2">Log In</Link>
-            <Link to="/register" className="text-sm font-bold bg-blue-600 text-white px-5 py-2.5 rounded-md hover:bg-blue-500 transition-colors shadow-sm shadow-blue-500/20">Get Started</Link>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link to="/login" className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 transition-colors px-2 sm:px-4 py-2">Log In</Link>
+            <Link to="/register" className="text-[10px] sm:text-sm font-bold bg-blue-600 text-white px-3 sm:px-5 py-2 rounded-md hover:bg-blue-500 transition-colors shadow-sm shadow-blue-500/20">Join Now</Link>
           </div>
         </div>
       </nav>
@@ -62,21 +62,21 @@ export default function Home() {
             <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
             Atlas AI Core Now Live
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-[5rem] font-black tracking-tighter mb-6 leading-[1.1] max-w-5xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5rem] font-black tracking-tighter mb-6 leading-[1.1] max-w-5xl mx-auto">
             The ultimate academic <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-fuchsia-400 animate-gradient bg-300%">
               command center.
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
-            SmartStudy automatically breaks down huge assignments into manageable daily tasks so you never have to cram again. Focus better, stress less, and improve your grades.
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+            SmartStudy automatically breaks down assignments into manageable daily tasks. Focus better, stress less, and improve your grades.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/register" className="group relative inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-slate-900 dark:text-white px-10 py-4 rounded-full font-bold text-lg shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:shadow-[0_0_50px_rgba(79,70,229,0.7)] hover:-translate-y-1 transition-all duration-300 border border-white/10">
+            <Link to="/register" className="group relative inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-slate-900 dark:text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-[0_0_50px_rgba(79,70,229,0.5)] hover:-translate-y-1 transition-all duration-300 border border-white/10">
               <span>Start Planning</span>
               <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </Link>
-            <a href="#how-it-works" className="inline-flex items-center justify-center bg-white dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-700/80 backdrop-blur-xl border border-slate-300 dark:border-slate-700/50 text-slate-900 dark:text-white px-10 py-4 rounded-full font-bold text-lg transition-all hover:-translate-y-1 duration-300">
+            <a href="#how-it-works" className="inline-flex items-center justify-center bg-white dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-700/80 backdrop-blur-xl border border-slate-300 dark:border-slate-700/50 text-slate-900 dark:text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg transition-all hover:-translate-y-1 duration-300">
               See How It Works
             </a>
           </div>
@@ -145,10 +145,10 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-br from-indigo-600/30 via-fuchsia-600/20 to-teal-500/20 rounded-full blur-[150px] pointer-events-none"></div>
           
           <div className="text-center mb-24 relative z-10">
-            <h2 className="text-5xl md:text-6xl font-black mb-6 tracking-tighter">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black mb-6 tracking-tighter">
               Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-indigo-400 to-cyan-400">Excellence.</span>
             </h2>
-            <p className="text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium">
+            <p className="text-base sm:text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium">
               Everything you need to organize your academic life without the bloat. Simple, stunning, and built to guarantee you full marks.
             </p>
           </div>
@@ -157,7 +157,7 @@ export default function Home() {
             {/* Feature 1 (Large Card - spans 2 columns) */}
             <div className="md:col-span-2 relative group rounded-[2.5rem] p-[1px] overflow-hidden bg-gradient-to-b from-slate-700/50 to-slate-800/20 hover:from-indigo-500/50 hover:to-fuchsia-500/50 transition-all duration-500">
               <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-3xl"></div>
-              <div className="relative h-full bg-[#0b101e]/80 p-10 md:p-12 rounded-[2.5rem] flex flex-col justify-between overflow-hidden">
+              <div className="relative h-full bg-[#0b101e]/80 p-8 sm:p-10 md:p-12 rounded-[2.5rem] flex flex-col justify-between overflow-hidden">
                 {/* Decorative Elements */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/20 blur-[60px] rounded-full group-hover:bg-indigo-500/30 transition-colors duration-500"></div>
                 <div className="absolute bottom-0 right-10 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-700">
@@ -188,26 +188,26 @@ export default function Home() {
             {/* Feature 2 (Tall Card) */}
             <div className="md:col-span-1 relative group rounded-[2.5rem] p-[1px] overflow-hidden bg-gradient-to-b from-slate-700/50 to-slate-800/20 hover:from-teal-400/50 hover:to-emerald-500/50 transition-all duration-500">
               <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-3xl"></div>
-              <div className="relative h-full bg-[#0b101e]/80 p-10 flex flex-col justify-between rounded-[2.5rem] overflow-hidden">
+              <div className="relative h-full bg-[#0b101e]/80 p-8 sm:p-10 flex flex-col justify-between rounded-[2.5rem] overflow-hidden">
                 <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-teal-900/40 to-transparent group-hover:from-teal-800/40 transition-colors duration-500"></div>
                 <div>
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-400 to-emerald-600 p-[1px] mb-8 shadow-lg shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-teal-400 to-emerald-600 p-[1px] mb-8 shadow-lg shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
                     <div className="w-full h-full bg-slate-950 rounded-[15px] flex items-center justify-center">
                       <svg className="w-8 h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-black mb-4 text-slate-900 dark:text-white">Focus Pomodoro</h3>
-                  <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
+                  <h3 className="text-xl sm:text-2xl font-black mb-4 text-slate-900 dark:text-white">Focus Pomodoro</h3>
+                  <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-sm sm:text-base">
                     A sleek, distraction-free timer built into your workflow. Enter the flow state effortlessly.
                   </p>
                 </div>
                 {/* Timer Graphic */}
-                <div className="mt-8 relative w-32 h-32 mx-auto">
+                <div className="mt-8 relative w-24 h-24 sm:w-32 sm:h-32 mx-auto">
                   <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
                     <circle cx="50" cy="50" r="45" fill="none" stroke="#1e293b" strokeWidth="8"></circle>
                     <circle cx="50" cy="50" r="45" fill="none" stroke="#2dd4bf" strokeWidth="8" strokeDasharray="283" strokeDashoffset="60" className="group-hover:strokeDashoffset-0 transition-all duration-1000 ease-out"></circle>
                   </svg>
-                  <div className="absolute inset-0 flex items-center justify-center text-xl font-bold text-slate-900 dark:text-white">25:00</div>
+                  <div className="absolute inset-0 flex items-center justify-center text-lg sm:text-xl font-bold text-slate-900 dark:text-white">25:00</div>
                 </div>
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function Home() {
             {/* Feature 3 (Wide Card - spans all 3 columns below) */}
             <div className="md:col-span-3 relative group rounded-[2.5rem] p-[1px] overflow-hidden bg-gradient-to-b from-slate-700/50 to-slate-800/20 hover:from-amber-400/50 hover:to-orange-500/50 transition-all duration-500">
               <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-3xl"></div>
-              <div className="relative h-full bg-[#0b101e]/80 p-10 md:p-12 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-10 overflow-hidden">
+              <div className="relative h-full bg-[#0b101e]/80 p-8 sm:p-10 md:p-12 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-10 overflow-hidden">
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-orange-500/5 blur-[100px] pointer-events-none group-hover:bg-orange-500/10 transition-colors duration-700"></div>
                 
                 <div className="flex-1 z-10">
@@ -297,8 +297,8 @@ export default function Home() {
         </section>
 
         {/* 5. How it Works & 7. Planner Preview Combined */}
-        <section id="how-it-works" className="max-w-7xl mx-auto px-6 py-24 text-center">
-          <h2 className="text-3xl md:text-5xl font-black mb-16">Three steps to success.</h2>
+        <section id="how-it-works" className="max-w-7xl mx-auto px-6 py-12 sm:py-24 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-12 sm:mb-16">Three steps to success.</h2>
           
           <div className="grid md:grid-cols-3 gap-12 relative">
             <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-blue-500/50 via-indigo-500/50 to-teal-500/50 z-0"></div>
@@ -324,14 +324,14 @@ export default function Home() {
         </section>
 
         {/* 7. Planner Preview */}
-        <section className="max-w-7xl mx-auto px-6 py-24 border-t border-slate-200 dark:border-slate-800/50">
+        <section className="max-w-7xl mx-auto px-6 py-12 sm:py-24 border-t border-slate-200 dark:border-slate-800/50">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black mb-6">Your Month at a Glance.</h2>
-            <p className="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">See exactly what needs to be done today, tomorrow, and next week. No surprises.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-6">Your Month at a Glance.</h2>
+            <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">See exactly what needs to be done today. No surprises.</p>
           </div>
-          <div className="bg-slate-50 dark:bg-[#0f172a] border border-slate-300 dark:border-slate-700/50/50 rounded-[2rem] p-4 md:p-8 shadow-2xl overflow-hidden relative">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-gradient-to-b from-blue-500/10 to-transparent pointer-events-none"></div>
-            <div className="grid grid-cols-7 gap-2 md:gap-4 text-center">
+          <div className="bg-slate-50 dark:bg-[#0f172a] border border-slate-300 dark:border-slate-700/50/50 rounded-[2rem] p-4 md:p-8 shadow-2xl overflow-x-auto relative scrollbar-hide">
+            <div className="min-w-[600px]">
+              <div className="grid grid-cols-7 gap-2 md:gap-4 text-center">
               {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
                 <div key={day} className="text-sm font-bold text-slate-500 dark:text-slate-400 py-2">{day}</div>
               ))}
@@ -355,23 +355,24 @@ export default function Home() {
                   )}
                 </div>
               ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* 8. CTA Section */}
         <section className="mt-10 mb-20 px-6">
-          <div className="max-w-5xl mx-auto bg-gradient-to-br from-indigo-900/80 to-purple-900/80 border border-indigo-500/30 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden backdrop-blur-xl shadow-2xl">
+          <div className="max-w-5xl mx-auto bg-gradient-to-br from-indigo-900/80 to-purple-900/80 border border-indigo-500/30 rounded-[2rem] sm:rounded-[3rem] p-8 sm:p-12 md:p-20 text-center relative overflow-hidden backdrop-blur-xl shadow-2xl">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400/20 blur-[80px] rounded-full"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-400/20 blur-[80px] rounded-full"></div>
             
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 relative z-10">Ready to transform your grades?</h2>
-            <p className="text-xl text-indigo-200 mb-10 max-w-2xl mx-auto relative z-10">Join thousands of proactive students who have optimized their entirely study workflow with SmartStudy.</p>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-6 relative z-10 leading-tight">Ready to transform your grades?</h2>
+            <p className="text-base sm:text-xl text-indigo-200 mb-10 max-w-2xl mx-auto relative z-10">Join thousands of proactive students who have optimized their entirely study workflow with SmartStudy.</p>
             <div className="relative z-10">
-              <Link to="/register" className="inline-block bg-white dark:bg-slate-800/60 text-indigo-900 px-12 py-5 rounded-full font-black text-xl hover:bg-slate-100 hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)]">
-                Create Your Free Account
+              <Link to="/register" className="inline-block w-full sm:w-auto bg-white dark:bg-white text-indigo-900 px-8 sm:px-12 py-4 sm:py-5 rounded-full font-black text-lg sm:text-xl hover:bg-slate-100 hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)]">
+                Create Free Account
               </Link>
-              <div className="mt-6 text-indigo-300/80 text-sm font-medium">No credit card required. Setup takes 30 seconds.</div>
+              <div className="mt-6 text-indigo-300/80 text-xs sm:text-sm font-medium">No credit card required. Setup takes 30 seconds.</div>
             </div>
           </div>
         </section>

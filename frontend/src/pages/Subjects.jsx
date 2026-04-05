@@ -31,16 +31,16 @@ export default function Subjects() {
   };
 
   return (
-    <div className="p-8 text-slate-800 dark:text-slate-100">
+    <div className="p-4 sm:p-8 text-slate-800 dark:text-slate-100">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-12 hover:scale-[1.01] transition-transform w-fit">
+        <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-8 sm:mb-12 hover:scale-[1.01] transition-transform w-fit">
           Manage Subjects
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white dark:bg-slate-800/40 p-8 rounded-[2rem] border border-slate-300 dark:border-slate-700/50 shadow-sm h-fit relative overflow-hidden transition duration-500 hover:shadow-md hover:border-indigo-100">
+          <div className="bg-white dark:bg-slate-800/40 p-6 sm:p-8 rounded-[2rem] border border-slate-300 dark:border-slate-700/50 shadow-sm h-fit relative overflow-hidden transition duration-500 hover:shadow-md hover:border-indigo-100">
 
-            <h2 className="text-2xl font-black mb-6 text-slate-900 dark:text-white tracking-tight">Add New Subject</h2>
+            <h2 className="text-xl sm:text-2xl font-black mb-6 text-slate-900 dark:text-white tracking-tight">Add New Subject</h2>
             <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
               <div>
                 <label className="block text-sm font-bold tracking-wide text-slate-500 dark:text-slate-400 mb-1.5 uppercase">Subject Name</label>

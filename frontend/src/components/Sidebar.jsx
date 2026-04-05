@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, setIsOpen }) {
   const { user, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -50,78 +50,98 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside 
-      className={`h-[calc(100vh-2rem)] my-4 ml-4 bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-slate-800 rounded-3xl flex flex-col justify-between sticky top-4 z-40 shadow-sm transition-all duration-300 ease-in-out relative overflow-visible ${isExpanded ? 'w-64' : 'w-20'}`}
-    >
-      {/* Top: Logo / App Name */}
-      <div className="flex flex-col h-full overflow-hidden z-10">
-        <div className="h-24 flex items-center justify-between px-5 relative shrink-0">
-           <Link to="/dashboard" className="flex items-center gap-3 overflow-hidden ml-1 group">
-             <div className="min-w-[40px] w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shrink-0 transition-transform group-hover:scale-105">
-                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-             </div>
-             <span className={`text-xl font-black text-slate-900 dark:text-white tracking-tight whitespace-nowrap transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0 hidden'}`}>
-                StudyPlanner
-             </span>
-           </Link>
-           
-           <button 
-             onClick={() => setIsExpanded(!isExpanded)}
-             className={`absolute -right-4 top-8 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900 p-1.5 rounded-full shadow-md z-50 transition-all duration-300 hover:scale-110 ${!isExpanded ? 'rotate-180' : ''}`}
-           >
-             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
-             </svg>
-           </button>
+    <>
+      {/* Backdrop for mobile */}
+      {isOpen && (
+        <div 
+          className="lg:hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 transition-opacity"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      <aside 
+        className={`h-full lg:h-[calc(100vh-2rem)] lg:my-4 lg:ml-4 bg-white dark:bg-[#0f172a] border-r lg:border border-slate-200 dark:border-slate-800 lg:rounded-3xl flex flex-col justify-between fixed lg:sticky top-0 lg:top-4 z-50 shadow-2xl lg:shadow-sm transition-all duration-300 ease-in-out overflow-visible ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} ${isExpanded ? 'w-64' : 'w-20'}`}
+      >
+        {/* Top: Logo / App Name */}
+        <div className="flex flex-col h-full overflow-hidden z-10">
+          <div className="h-24 flex items-center justify-between px-5 relative shrink-0">
+             <Link to="/dashboard" onClick={() => setIsOpen(false)} className="flex items-center gap-3 overflow-hidden ml-1 group">
+               <div className="min-w-[40px] w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shrink-0 transition-transform group-hover:scale-105">
+                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+               </div>
+               <span className={`text-xl font-black text-slate-900 dark:text-white tracking-tight whitespace-nowrap transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0 hidden'}`}>
+                  StudyPlanner
+               </span>
+             </Link>
+             
+             {/* Desktop Expand/Collapse (hidden on mobile) */}
+             <button 
+               onClick={() => setIsExpanded(!isExpanded)}
+               className={`hidden lg:flex absolute -right-4 top-8 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900 p-1.5 rounded-full shadow-md z-50 transition-all duration-300 hover:scale-110 ${!isExpanded ? 'rotate-180' : ''}`}
+             >
+               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+               </svg>
+             </button>
+
+             {/* Mobile Close Button (hidden on desktop) */}
+             <button 
+               onClick={() => setIsOpen(false)}
+               className="lg:hidden p-2 text-slate-500 dark:text-slate-400"
+             >
+               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+             </button>
+          </div>
+
+          {/* Middle: Main Navigation */}
+          <nav className="p-3 mt-2 flex-1 overflow-y-auto custom-scrollbar">
+            {navGroups.map((group, groupIndex) => (
+              <div key={group.groupName} className={`${groupIndex > 0 ? 'mt-6' : ''}`}>
+                <p className={`px-4 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2 transition-all duration-300 ${isExpanded ? 'block' : 'hidden'}`}>
+                  {group.groupName}
+                </p>
+                
+                <div className="space-y-1">
+                  {group.items.map((item) => {
+                    const isActive = location.pathname.startsWith(item.path);
+                    
+                    return (
+                      <Link 
+                        key={item.name} 
+                        to={item.path}
+                        onClick={() => setIsOpen(false)}
+                        title={!isExpanded ? item.name : ""}
+                        className={`relative flex items-center gap-4 px-4 py-2.5 rounded-xl transition-all duration-200 font-bold group overflow-hidden ${isActive ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 shadow-sm ring-1 ring-indigo-200 dark:ring-indigo-500/20' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100 cursor-pointer'}`}
+                      >
+                        <svg className={`w-5 h-5 shrink-0 transition-colors duration-300 ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-500 dark:text-slate-500 group-hover:text-indigo-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon}></path>
+                        </svg>
+                        <span className={`whitespace-nowrap transition-opacity duration-300 text-sm ${isExpanded ? 'opacity-100 w-auto' : 'opacity-0 w-0 hidden'}`}>
+                          {item.name}
+                        </span>
+                      </Link>
+                    )
+                  })}
+                </div>
+              </div>
+            ))}
+          </nav>
         </div>
 
-        {/* Middle: Main Navigation */}
-        <nav className="p-3 mt-2 flex-1 overflow-y-auto custom-scrollbar">
-          {navGroups.map((group, groupIndex) => (
-            <div key={group.groupName} className={`${groupIndex > 0 ? 'mt-6' : ''}`}>
-              <p className={`px-4 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2 transition-all duration-300 ${isExpanded ? 'block' : 'hidden'}`}>
-                {group.groupName}
-              </p>
-              
-              <div className="space-y-1">
-                {group.items.map((item) => {
-                  const isActive = location.pathname.startsWith(item.path);
-                  
-                  return (
-                    <Link 
-                      key={item.name} 
-                      to={item.path}
-                      title={!isExpanded ? item.name : ""}
-                      className={`relative flex items-center gap-4 px-4 py-2.5 rounded-xl transition-all duration-200 font-bold group overflow-hidden ${isActive ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 shadow-sm ring-1 ring-indigo-200 dark:ring-indigo-500/20' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100 cursor-pointer'}`}
-                    >
-                      <svg className={`w-5 h-5 shrink-0 transition-colors duration-300 ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-500 dark:text-slate-500 group-hover:text-indigo-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon}></path>
-                      </svg>
-                      <span className={`whitespace-nowrap transition-opacity duration-300 text-sm ${isExpanded ? 'opacity-100 w-auto' : 'opacity-0 w-0 hidden'}`}>
-                        {item.name}
-                      </span>
-                    </Link>
-                  )
-                })}
-              </div>
-            </div>
-          ))}
-        </nav>
-      </div>
-
-      {/* Bottom: Logout */}
-      <div className="p-3 border-t border-slate-200 dark:border-slate-800 space-y-2 shrink-0 z-10 relative bg-slate-50 dark:bg-[#0f172a] rounded-b-3xl">
-         <button 
-           onClick={handleLogout} 
-           title={!isExpanded ? "Logout" : ""}
-           className="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 font-bold text-rose-600 dark:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 hover:text-rose-700 dark:hover:text-rose-400 border border-transparent text-left group overflow-hidden cursor-pointer"
-         >
-            <svg className="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-            <span className={`whitespace-nowrap transition-opacity duration-300 text-sm ${isExpanded ? 'opacity-100 w-auto' : 'opacity-0 w-0 hidden'}`}>
-              Logout
-            </span>
-         </button>
-      </div>
-    </aside>
+        {/* Bottom: Logout */}
+        <div className="p-3 border-t border-slate-200 dark:border-slate-800 space-y-2 shrink-0 z-10 relative bg-white dark:bg-[#0f172a] lg:rounded-b-3xl">
+           <button 
+             onClick={handleLogout} 
+             title={!isExpanded ? "Logout" : ""}
+             className="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 font-bold text-rose-600 dark:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 hover:text-rose-700 dark:hover:text-rose-400 border border-transparent text-left group overflow-hidden cursor-pointer"
+           >
+              <svg className="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+              <span className={`whitespace-nowrap transition-opacity duration-300 text-sm ${isExpanded ? 'opacity-100 w-auto' : 'opacity-0 w-0 hidden'}`}>
+                Logout
+              </span>
+           </button>
+        </div>
+      </aside>
+    </>
   );
 }

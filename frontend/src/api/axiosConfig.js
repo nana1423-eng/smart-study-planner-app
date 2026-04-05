@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { cacheData, getCachedData, queueRequest } from '../utils/offlineSync';
 
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const api = axios.create({
-  baseURL: 'https://smart-study-backend-45ib.onrender.com/api',
+  baseURL: isLocal ? 'http://localhost:8081/api' : 'https://smart-study-backend-45ib.onrender.com/api',
   withCredentials: true,
 });
 
@@ -38,6 +39,7 @@ api.interceptors.response.use(
         return Promise.resolve({ data: { message: "Action queued while offline." }, status: 202 });
       }
     } else if (error.response.status === 401 || error.response.status === 403) {
+      console.warn(`Auth failed (Status: ${error.response.status}) for URL: ${config.url}`);
       // Handle expired or invalid tokens globally
       localStorage.removeItem('token');
       localStorage.removeItem('user');

@@ -58,9 +58,17 @@ export default function Navbar() {
   // When User is logged in, they see the robust Top Bar for secondary actions
   if (user) {
     return (
-      <header className="bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-2xl border-b border-slate-200 dark:border-slate-700/50 h-20 flex items-center justify-between px-8 sticky top-0 z-30 shadow-sm transition-all duration-300">
+      <header className="bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-2xl border-b border-slate-200 dark:border-slate-700/50 h-20 flex items-center justify-between px-4 sm:px-8 sticky top-0 z-30 shadow-sm transition-all duration-300">
+        {/* Mobile Hamburger Toggle */}
+        <button 
+          onClick={onToggleSidebar}
+          className="lg:hidden p-2.5 mr-2 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+        >
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+
         {/* Search Bar - Global System */}
-        <div id="global-search-container" className="flex-1 max-w-xl px-4 relative">
+        <div id="global-search-container" className="flex-1 max-w-xl px-0 sm:px-4 relative">
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg className="h-5 w-5 text-slate-400 group-focus-within:text-indigo-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
