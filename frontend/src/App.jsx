@@ -1,4 +1,5 @@
 import React from 'react';
+import BackendWakeUp from './components/BackendWakeUp';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login';
@@ -38,6 +39,7 @@ function App() {
   }, []);
 
   return (
+    <BackendWakeUp>
     <ThemeProvider>
       <AuthProvider>
         <Router>
@@ -94,6 +96,7 @@ function App() {
         </Router>
       </AuthProvider>
     </ThemeProvider>
+    </BackendWakeUp>
   );
 }
 
