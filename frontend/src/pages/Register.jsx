@@ -12,7 +12,15 @@ export default function Register() {
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [emailError, setEmailError] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { register, login, user } = useAuth();
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
 
   // Strict RFC 5322 Regex 
   const validateEmail = (inputEmail) => {
@@ -62,9 +70,9 @@ export default function Register() {
       return setError("You must accept the Terms and Conditions.");
     }
     try {
-      await api.post('/auth/signup', { fullName, username, email, password });
-      alert("Registration successful! You may now log in.");
-      navigate('/login');
+      await register(fullName, username, email, password);
+      await login(username, password);
+      // Wait for AuthContext to update the user state and handle navigation via useEffect
     } catch (err) {
       setError(err.response?.data || 'An error occurred. Please try a different username.');
     }
