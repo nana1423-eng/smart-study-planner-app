@@ -11,9 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -23,17 +21,15 @@ public class AuthController {
     private final PasswordEncoder encoder;
     private final JwtUtil jwtUtil;
     private final VerificationTokenRepository tokenRepository;
-    private final EmailService emailService;
 
     public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository,
                           PasswordEncoder encoder, JwtUtil jwtUtil, 
-                          VerificationTokenRepository tokenRepository, EmailService emailService) {
+                          VerificationTokenRepository tokenRepository) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.encoder = encoder;
         this.jwtUtil = jwtUtil;
         this.tokenRepository = tokenRepository;
-        this.emailService = emailService;
     }
 
     @PostMapping("/signin")
